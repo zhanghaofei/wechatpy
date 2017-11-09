@@ -45,14 +45,14 @@ with open('requirements.txt') as f:
     requirements = [l for l in f.read().splitlines() if l]
 
 setup(
-    name='wechatpy',
-    version='1.5.3',
-    author='messense',
-    author_email='messense@icloud.com',
-    url='https://github.com/messense/wechatpy',
+    name='weixinpy',
+    version='0.0.1',
+    author='zhanghaofei',
+    author_email='1042697116@qq.com',
+    url='https://github.com/zhanghaofei/weixinpy',
     packages=find_packages(),
     keywords='WeChat, wexin, SDK',
-    description='wechatpy: WeChat SDK for Python',
+    description='weixinpy: WeChat SDK for Python',
     long_description=long_description,
     install_requires=requirements,
     include_package_data=True,
