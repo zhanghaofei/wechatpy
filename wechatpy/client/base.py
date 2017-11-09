@@ -139,7 +139,7 @@ class BaseWeChatClient(object):
                     WeChatErrorCode.EXPIRED_ACCESS_TOKEN.value):
                 logger.info('Access token expired, fetch a new one and retry request')
                 self.fetch_access_token()
-                access_token = self.session.get(self.access_token_key)
+                access_token, expires_at = self.session.get(self.access_token_key)
                 kwargs['params']['access_token'] = access_token
                 return self._request(
                     method=method,
@@ -237,7 +237,7 @@ class BaseWeChatClient(object):
     @property
     def access_token(self):
         """ WeChat access token """
-        access_token = self.session.get(self.access_token_key)
+        access_token, expires_at = self.session.get(self.access_token_key)
         if access_token:
             if not self.expires_at:
                 # user provided access_token, just return it
@@ -248,4 +248,5 @@ class BaseWeChatClient(object):
                 return access_token
 
         self.fetch_access_token()
-        return self.session.get(self.access_token_key)
+        access_token, expires_at = self.session.get(self.access_token_key)
+        return access_token

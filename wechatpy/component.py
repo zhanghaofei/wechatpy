@@ -102,7 +102,8 @@ class BaseWeChatComponent(object):
 
     @property
     def component_verify_ticket(self):
-        return self.session.get('component_verify_ticket')
+        ticket, expires_at = self.session.get('component_verify_ticket')
+        return ticket
 
     def _request(self, method, url_or_endpoint, **kwargs):
         if not url_or_endpoint.startswith(('http://', 'https://')):
@@ -152,9 +153,8 @@ class BaseWeChatComponent(object):
             if errcode == 42001:
                 logger.info('Component access token expired, fetch a new one and retry request')
                 self.fetch_component_access_token()
-                kwargs['params']['component_access_token'] = self.session.get(
-                    'component_access_token'
-                )
+                token, expires_at = self.session.get('component_access_token')
+                kwargs['params']['component_access_token'] = token
                 return self._request(
                     method=method,
                     url_or_endpoint=url,
@@ -242,7 +242,7 @@ class BaseWeChatComponent(object):
     @property
     def access_token(self):
         """ WeChat component access token """
-        access_token = self.session.get('component_access_token')
+        access_token, expires_at = self.session.get('component_access_token')
         if access_token:
             if not self.expires_at:
                 # user provided access_token, just return it
@@ -253,7 +253,8 @@ class BaseWeChatComponent(object):
                 return access_token
 
         self.fetch_access_token()
-        return self.session.get('component_access_token')
+        access_token, expires_at = self.session.get('component_access_token')
+        return access_token
 
     def get(self, url, **kwargs):
         return self._request(
@@ -386,8 +387,8 @@ class WeChatComponent(BaseWeChatComponent):
         """
         access_token_key = '{0}_access_token'.format(authorizer_appid)
         refresh_token_key = '{0}_refresh_token'.format(authorizer_appid)
-        access_token = self.session.get(access_token_key)
-        refresh_token = self.session.get(refresh_token_key)
+        access_token, _ = self.session.get(access_token_key)
+        refresh_token, _ = self.session.get(refresh_token_key)
 
         if not access_token:
             ret = self.refresh_authorizer_token(

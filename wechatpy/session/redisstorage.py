@@ -5,6 +5,7 @@ from wechatpy.utils import to_text
 from wechatpy.utils import json
 
 
+# TODO: 修改token存储方式后该存储引擎方法未修改，需参照memorystorage
 class RedisStorage(SessionStorage):
 
     def __init__(self, redis, prefix='wechatpy'):

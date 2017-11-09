@@ -27,15 +27,12 @@ class WeChatJSAPI(BaseWeChatAPI):
         :return: ticket
         """
         ticket_key = '{}_jsapi_ticket'.format(self._client.corp_id)
-        expires_at_key = '{}_jsapi_ticket_expires_at'.format(self._client.corp_id)
-        ticket = self.session.get(ticket_key)
-        expires_at = self.session.get(expires_at_key, 0)
+        ticket, expires_at = self.session.get(ticket_key)
         if not ticket or expires_at < int(time.time()):
             jsapi_ticket = self.get_ticket()
             ticket = jsapi_ticket['ticket']
-            expires_at = int(time.time()) + int(jsapi_ticket['expires_in'])
-            self.session.set(ticket_key, ticket)
-            self.session.set(expires_at_key, expires_at)
+            expires_in = int(jsapi_ticket['expires_in'])
+            self.session.set(ticket_key, ticket, expires_in)
         return ticket
 
     def get_jsapi_signature(self, noncestr, ticket, timestamp, url):

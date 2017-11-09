@@ -3,6 +3,7 @@ from __future__ import absolute_import, unicode_literals
 from wechatpy.session import SessionStorage
 
 
+# TODO: 修改token存储方式后该存储引擎方法未修改，需参照memorystorage
 class ShoveStorage(SessionStorage):
 
     def __init__(self, shove, prefix='wechatpy'):

@@ -97,15 +97,16 @@ class WeChatComponentClient(WeChatClient):
 
     @property
     def access_token(self):
-        access_token = self.session.get(self.access_token_key)
+        access_token, expires_at = self.session.get(self.access_token_key)
         if not access_token:
             self.fetch_access_token()
-            access_token = self.session.get(self.access_token_key)
+            access_token, expires_at = self.session.get(self.access_token_key)
         return access_token
 
     @property
     def refresh_token(self):
-        return self.session.get(self.refresh_token_key)
+        token, expires_at = self.session.get(self.refresh_token_key)
+        return token
 
     def fetch_access_token(self):
         """
