@@ -46,7 +46,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='weixinpy',
-    version='0.0.2',
+    version='0.0.3',
     author='zhanghaofei',
     author_email='1042697116@qq.com',
     url='https://github.com/zhanghaofei/weixinpy',
