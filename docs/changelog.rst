@@ -1,10 +1,76 @@
 Changelog
 ================
 
-master
+Version 1.7.5
+-----------------
+
+Released on 2018-08-01
+
++ 修复 OAuth URL 生成可能触发 UnicodeDecodeError 的问题
++ 依赖 xmltodict 版本要求 >= 0.11.0
++ 微信支付接口增加 `sub_appid` 参数以支持小程序支付功能
++ 增加帐号迁移转换 openid API
+
+Version 1.7.4
+-----------------
+
+Released on 2018-07-08
+
++ 支持透明背景微信小程序码
+
+Version 1.7.3
+-----------------
+
+Released on 2018-07-04
+
++ 修复“主动发送消息给设备”接口参数错误
++ 修复“第三方主动发送设备状态消息给微信终端”接口参数错误
+
+Version 1.7.1
+-----------------
+
+Released on 2018-07-03
+
++ PyPI 项目简介使用 markdown 格式
++ 微信支付增加下载资金账单接口
++ 微信支付沙盒模式问题修复
+
+Version 1.7.0
+-----------------
+
+Release on 2018-05-02
+
++ 三方平台增加 parse_message 处理消息，token cache 在处理消息时自动处理
++ 微信小店新增部分接口
++ 微信支付退款接口增加可选的 `notify_url` 参数
++ 群发接口增加 `send_ignore_reprint` 和 `client_msg_id` 参数
++ 微信支付增加转账到银行卡接口
+
+Version 1.6.1
 ------------------
 
-Unreleased
++ 增加微信开放平台代公众号 OAuth 网页授权相关接口
++ 微信支付 sandbox 环境 API 问题i修复
++ 增加微信支付 jssdk 的 sandbox API 支持
+
+Version 1.6.0
+------------------
+
++ 增加微信代扣相关接口
++ 客服消息增加发送小程序页面接口
++ 创建小程序码接口增加小程序二维码的跳转页面参数
++ 微信支付增加 timeout 参数
++ 微信支付支持 sandbox 环境
+
+Version 1.5.5
+------------------
+
++ 企业微信支持文本卡片消息
+
+Version 1.5.4
+-------------------
+
++ 修复第三方平台重新获取 access token 代码 typo
 
 Version 1.5.3
 -------------------

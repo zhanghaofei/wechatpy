@@ -1,21 +1,20 @@
+dist: xenial
+sudo: required
 language: python
-
-addons:
-  apt_packages:
-    - pandoc
-
-# Use container-based infrastructure
-sudo: false
 
 matrix:
   include:
     - env: TOX_ENV=py27-cryptography
+      dist: trusty
       python: 2.7
     - env: TOX_ENV=py27-pycrypto
+      dist: trusty
       python: 2.7
     - env: TOX_ENV=py34-cryptography
+      dist: trusty
       python: 3.4
     - env: TOX_ENV=py34-pycrypto
+      dist: trusty
       python: 3.4
     - env: TOX_ENV=py35-cryptography
       python: 3.5
@@ -25,10 +24,13 @@ matrix:
       python: 3.6
     - env: TOX_ENV=py36-pycrypto
       python: 3.6
+    - env: TOX_ENV=py37-cryptography
+      python: 3.7
+    - env: TOX_ENV=py37-pycrypto
+      python: 3.7
     - env: TOX_ENV=pypy-cryptography
+      dist: trusty
       python: "pypy-5.3.1"
-    # - env: TOX_ENV=pypy-pycrypto
-    # python: "pypy-5.3.1"
 
 services:
   - redis-server
@@ -50,9 +52,8 @@ after_success:
   - codecov
   - |
     if [[ "${TRAVIS_TAG:-}" != "" && "$TOX_ENV" == "py36-cryptography" ]]; then
-      pandoc --from markdown --to rst --output=README.rst README.md;
+      python3.6 -m pip install -U twine wheel;
       python3.6 setup.py sdist bdist_wheel;
-      python3.6 -m pip install twine;
       python3.6 -m twine upload --skip-existing dist/*;
     fi
 

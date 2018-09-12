@@ -9,14 +9,15 @@
 
 [![Build Status](https://travis-ci.org/jxtech/wechatpy.svg?branch=master)](https://travis-ci.org/jxtech/wechatpy)
 [![Build status](https://ci.appveyor.com/api/projects/status/sluy95tvbe090af1/branch/master?svg=true)](https://ci.appveyor.com/project/messense/wechatpy-den93/branch/master)
-[![codecov.io](http://codecov.io/github/jxtech/wechatpy/coverage.svg?branch=master)](http://codecov.io/github/jxtech/wechatpy?branch=master)
+[![codecov.io](https://codecov.io/github/jxtech/wechatpy/coverage.svg?branch=master)](https://codecov.io/github/jxtech/wechatpy?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jxtech/wechatpy/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jxtech/wechatpy/?branch=master)
-[![PyPI](https://img.shields.io/pypi/v/wechatpy.svg)](https://pypi.python.org/pypi/wechatpy)
-[![Updates](https://pyup.io/repos/github/jxtech/wechatpy/shield.svg)](https://pyup.io/repos/github/jxtech/wechatpy/)
+[![PyPI](https://img.shields.io/pypi/v/wechatpy.svg)](https://pypi.org/project/wechatpy)
+[![Downloads](https://pepy.tech/badge/wechatpy)](https://pepy.tech/project/wechatpy)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fjxtech%2Fwechatpy.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fjxtech%2Fwechatpy?ref=badge_shield)
 
 微信(WeChat) 公众平台第三方 Python SDK。
 
-[【阅读文档】](http://wechatpy.readthedocs.org/zh_CN/master/) [【快速入门】](http://wechatpy.readthedocs.org/zh_CN/master/quickstart.html)
+[【阅读文档】](https://wechatpy.readthedocs.org/zh_CN/master/) [【快速入门】](https://wechatpy.readthedocs.org/zh_CN/master/quickstart.html)
 
 [![Join the chat at https://gitter.im/messense/wechatpy](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/messense/wechatpy?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -69,29 +70,11 @@ pip install wechatpy[pycrypto]
 
 QQ 群：176596300
 
-![wechatpy QQ 群](docs/_static/images/qq-group.png)
+![wechatpy QQ 群](https://raw.githubusercontent.com/jxtech/wechatpy/master/docs/_static/images/qq-group.png)
 
 
 ## License
 
-The MIT License (MIT)
+This work is released under the MIT license. A copy of the license is provided in the [LICENSE](./LICENSE) file.
 
-Copyright (c) 2014-2017 messense
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fjxtech%2Fwechatpy.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fjxtech%2Fwechatpy?ref=badge_large)

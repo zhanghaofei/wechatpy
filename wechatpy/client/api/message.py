@@ -242,6 +242,24 @@ class WeChatMessage(BaseWeChatAPI):
         }
         return self._send_custom_message(data, account=account)
 
+    def send_mini_program_page(self, user_id, miniprogrampage, account=None):
+        """发送小程序卡片（要求小程序与公众号已关联）
+
+        详情请参参考
+        https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140547
+
+        :param user_id: 用户 ID openid
+        :param miniprogrampage: 小程序卡片信息
+        :param account: 可选，客服账号
+        :return: 返回的 JSON 数据包
+        """
+        data = {
+            'touser': user_id,
+            'msgtype': 'miniprogrampage',
+            'miniprogrampage': miniprogrampage
+        }
+        return self._send_custom_message(data, account=account)
+
     def delete_mass(self, msg_id):
         """
         删除群发消息
@@ -268,10 +286,14 @@ class WeChatMessage(BaseWeChatAPI):
         )
 
     def _send_mass_message(self, group_or_users, msg_type, msg,
-                           is_to_all=False, preview=False):
+                           is_to_all=False, preview=False,
+                           send_ignore_reprint=0, client_msg_id=None):
         data = {
-            'msgtype': msg_type
+            'msgtype': msg_type,
+            'send_ignore_reprint': send_ignore_reprint,
         }
+        if client_msg_id is not None:
+            data['clientmsgid'] = client_msg_id
         if not preview:
             if isinstance(group_or_users, (tuple, list)):
                 # send by user ids
@@ -303,7 +325,8 @@ class WeChatMessage(BaseWeChatAPI):
         )
 
     def send_mass_text(self, group_or_users, content,
-                       is_to_all=False, preview=False):
+                       is_to_all=False, preview=False,
+                       send_ignore_reprint=0, client_msg_id=None):
         """
         群发文本消息
 
@@ -318,6 +341,13 @@ class WeChatMessage(BaseWeChatAPI):
         :type is_to_all: bool
         :param preview: 是否发送预览，此时 group_or_users 参数应为一个openid字符串
         :type preview: bool
+        :param send_ignore_reprint: 指定待群发的文章被判定为转载时，是否继续群发。
+                                    当 send_ignore_reprint 参数设置为1时，文章被判定为转载时，且原创文允许转载时，将继续进行群发操作。
+                                    当 send_ignore_reprint 参数设置为0时，文章被判定为转载时，将停止群发操作。
+                                    send_ignore_reprint 默认为0。
+        :type send_ignore_reprint: int
+        :param client_msg_id: 开发者侧群发 msgid，长度限制 64 字节
+        :type client_msg_id: str
 
         :return: 返回的 JSON 数据包
         """
@@ -330,11 +360,14 @@ class WeChatMessage(BaseWeChatAPI):
                 }
             },
             is_to_all,
-            preview
+            preview,
+            send_ignore_reprint,
+            client_msg_id,
         )
 
     def send_mass_image(self, group_or_users, media_id,
-                        is_to_all=False, preview=False):
+                        is_to_all=False, preview=False,
+                        send_ignore_reprint=0, client_msg_id=None):
         """
         群发图片消息
 
@@ -349,6 +382,13 @@ class WeChatMessage(BaseWeChatAPI):
         :type is_to_all: bool
         :param preview: 是否发送预览，此时 group_or_users 参数应为一个openid字符串
         :type preview: bool
+        :param send_ignore_reprint: 指定待群发的文章被判定为转载时，是否继续群发。
+                                    当 send_ignore_reprint 参数设置为1时，文章被判定为转载时，且原创文允许转载时，将继续进行群发操作。
+                                    当 send_ignore_reprint 参数设置为0时，文章被判定为转载时，将停止群发操作。
+                                    send_ignore_reprint 默认为0。
+        :type send_ignore_reprint: int
+        :param client_msg_id: 开发者侧群发 msgid，长度限制 64 字节
+        :type client_msg_id: str
 
         :return: 返回的 JSON 数据包
         """
@@ -361,11 +401,14 @@ class WeChatMessage(BaseWeChatAPI):
                 }
             },
             is_to_all,
-            preview
+            preview,
+            send_ignore_reprint,
+            client_msg_id,
         )
 
     def send_mass_voice(self, group_or_users, media_id,
-                        is_to_all=False, preview=False):
+                        is_to_all=False, preview=False,
+                        send_ignore_reprint=0, client_msg_id=None):
         """
         群发语音消息
 
@@ -380,6 +423,13 @@ class WeChatMessage(BaseWeChatAPI):
         :type is_to_all: bool
         :param preview: 是否发送预览，此时 group_or_users 参数应为一个openid字符串
         :type preview: bool
+        :param send_ignore_reprint: 指定待群发的文章被判定为转载时，是否继续群发。
+                                    当 send_ignore_reprint 参数设置为1时，文章被判定为转载时，且原创文允许转载时，将继续进行群发操作。
+                                    当 send_ignore_reprint 参数设置为0时，文章被判定为转载时，将停止群发操作。
+                                    send_ignore_reprint 默认为0。
+        :type send_ignore_reprint: int
+        :param client_msg_id: 开发者侧群发 msgid，长度限制 64 字节
+        :type client_msg_id: str
 
         :return: 返回的 JSON 数据包
         """
@@ -392,11 +442,14 @@ class WeChatMessage(BaseWeChatAPI):
                 }
             },
             is_to_all,
-            preview
+            preview,
+            send_ignore_reprint,
+            client_msg_id,
         )
 
     def send_mass_video(self, group_or_users, media_id, title=None,
-                        description=None, is_to_all=False, preview=False):
+                        description=None, is_to_all=False, preview=False,
+                        send_ignore_reprint=0, client_msg_id=None):
         """
         群发视频消息
 
@@ -413,6 +466,13 @@ class WeChatMessage(BaseWeChatAPI):
         :type is_to_all: bool
         :param preview: 是否发送预览，此时 group_or_users 参数应为一个openid字符串
         :type preview: bool
+        :param send_ignore_reprint: 指定待群发的文章被判定为转载时，是否继续群发。
+                                    当 send_ignore_reprint 参数设置为1时，文章被判定为转载时，且原创文允许转载时，将继续进行群发操作。
+                                    当 send_ignore_reprint 参数设置为0时，文章被判定为转载时，将停止群发操作。
+                                    send_ignore_reprint 默认为0。
+        :type send_ignore_reprint: int
+        :param client_msg_id: 开发者侧群发 msgid，长度限制 64 字节
+        :type client_msg_id: str
 
         :return: 返回的 JSON 数据包
         """
@@ -430,11 +490,14 @@ class WeChatMessage(BaseWeChatAPI):
                 'mpvideo': video_data
             },
             is_to_all,
-            preview
+            preview,
+            send_ignore_reprint,
+            client_msg_id,
         )
 
     def send_mass_article(self, group_or_users, media_id,
-                          is_to_all=False, preview=False):
+                          is_to_all=False, preview=False,
+                          send_ignore_reprint=0, client_msg_id=None):
         """
         群发图文消息
 
@@ -449,6 +512,13 @@ class WeChatMessage(BaseWeChatAPI):
         :type is_to_all: bool
         :param preview: 是否发送预览，此时 group_or_users 参数应为一个openid字符串
         :type preview: bool
+        :param send_ignore_reprint: 指定待群发的文章被判定为转载时，是否继续群发。
+                                    当 send_ignore_reprint 参数设置为1时，文章被判定为转载时，且原创文允许转载时，将继续进行群发操作。
+                                    当 send_ignore_reprint 参数设置为0时，文章被判定为转载时，将停止群发操作。
+                                    send_ignore_reprint 默认为0。
+        :type send_ignore_reprint: int
+        :param client_msg_id: 开发者侧群发 msgid，长度限制 64 字节
+        :type client_msg_id: str
 
         :return: 返回的 JSON 数据包
         """
@@ -461,7 +531,9 @@ class WeChatMessage(BaseWeChatAPI):
                 }
             },
             is_to_all,
-            preview
+            preview,
+            send_ignore_reprint,
+            client_msg_id,
         )
 
     def get_mass(self, msg_id):
@@ -535,7 +607,8 @@ class WeChatMessage(BaseWeChatAPI):
         return self._get('get_current_autoreply_info')
 
     def send_mass_card(self, group_or_users, card_id,
-                       is_to_all=False, preview=False):
+                       is_to_all=False, preview=False,
+                       send_ignore_reprint=0, client_msg_id=None):
         """
         群发卡券消息
 
@@ -550,6 +623,13 @@ class WeChatMessage(BaseWeChatAPI):
         :type is_to_all: bool
         :param preview: 是否发送预览，此时 group_or_users 参数应为一个openid字符串
         :type preview: bool
+        :param send_ignore_reprint: 指定待群发的文章被判定为转载时，是否继续群发。
+                                    当 send_ignore_reprint 参数设置为1时，文章被判定为转载时，且原创文允许转载时，将继续进行群发操作。
+                                    当 send_ignore_reprint 参数设置为0时，文章被判定为转载时，将停止群发操作。
+                                    send_ignore_reprint 默认为0。
+        :type send_ignore_reprint: int
+        :param client_msg_id: 开发者侧群发 msgid，长度限制 64 字节
+        :type client_msg_id: str
 
         :return: 返回的 JSON 数据包
         """
@@ -562,7 +642,9 @@ class WeChatMessage(BaseWeChatAPI):
                 }
             },
             is_to_all,
-            preview
+            preview,
+            send_ignore_reprint,
+            client_msg_id,
         )
 
     def get_subscribe_authorize_url(self, scene, template_id, redirect_url, reserved=None):

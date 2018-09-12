@@ -159,6 +159,11 @@ class WeChatClientTestCase(unittest.TestCase):
             result = self.client.message.send_card(1, '123456')
             self.assertEqual(0, result['errcode'])
 
+    def test_send_mini_program_page(self):
+        with HTTMock(wechat_api_mock):
+            result = self.client.message.send_mini_program_page(1, {})
+            self.assertEqual(0, result['errcode'])
+
     def test_send_mass_text_message(self):
         with HTTMock(wechat_api_mock):
             result = self.client.message.send_mass_text([1], 'test', is_to_all=True)
@@ -842,3 +847,10 @@ class WeChatClientTestCase(unittest.TestCase):
         with HTTMock(wechat_api_mock):
             res = self.client.scan.check_ticket('Ym1haDlvNXJqY3Ru1')
         self.assertEqual('otAzGjrS4AYCmeJM1GhEOcHXXTAo', res['openid'])
+
+    def test_change_openid(self):
+        with HTTMock(wechat_api_mock):
+            res = self.client.user.change_openid('xxxxx', ['oEmYbwN-n24jxvk4Sox81qedINkQ', 'oEmYbwH9uVd4RKJk7ZZg6SzL6tTo'])
+        self.assertEqual(2, len(res))
+        self.assertEqual('o2FwqwI9xCsVadFah_HtpPfaR-X4', res[0]['new_openid'])
+        self.assertEqual('ori_openid error', res[1]['err_msg'])

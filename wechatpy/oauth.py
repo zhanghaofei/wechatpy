@@ -13,20 +13,23 @@ from __future__ import absolute_import, unicode_literals
 import requests
 from six.moves.urllib.parse import quote
 
-from wechatpy.utils import json
 from wechatpy.exceptions import WeChatOAuthException
+from wechatpy.utils import json
 
 
 class WeChatOAuth(object):
-    """微信公众平台 OAuth 网页授权 """
+    """ 微信公众平台 OAuth 网页授权
+
+    详情请参考
+    https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419316505
+    """
 
     _http = requests.Session()
 
     API_BASE_URL = 'https://api.weixin.qq.com/'
     OAUTH_BASE_URL = 'https://open.weixin.qq.com/connect/'
 
-    def __init__(self, app_id, secret, redirect_uri,
-                 scope='snsapi_base', state=''):
+    def __init__(self, app_id, secret, redirect_uri, scope='snsapi_base', state=''):
         """
 
         :param app_id: 微信公众号 app_id
@@ -98,7 +101,7 @@ class WeChatOAuth(object):
 
         :return: URL 地址
         """
-        redirect_uri = quote(self.redirect_uri, safe='')
+        redirect_uri = quote(self.redirect_uri, safe=b'')
         url_list = [
             self.OAUTH_BASE_URL,
             'oauth2/authorize?appid=',
@@ -119,7 +122,7 @@ class WeChatOAuth(object):
 
         :return: URL 地址
         """
-        redirect_uri = quote(self.redirect_uri, safe='')
+        redirect_uri = quote(self.redirect_uri, safe=b'')
         url_list = [
             self.OAUTH_BASE_URL,
             'qrconnect?appid=',
