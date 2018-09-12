@@ -467,14 +467,9 @@ class WeChatComponent(BaseWeChatComponent):
         """
         access_token_key = '{0}_access_token'.format(authorizer_appid)
         refresh_token_key = '{0}_refresh_token'.format(authorizer_appid)
-<<<<<<< HEAD
         access_token, _ = self.session.get(access_token_key)
         refresh_token, _ = self.session.get(refresh_token_key)
-=======
-        access_token = self.session.get(access_token_key)
-        refresh_token = self.session.get(refresh_token_key)
         assert refresh_token
->>>>>>> upstream/master
 
         if not access_token:
             ret = self.refresh_authorizer_token(

@@ -43,7 +43,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='weixinpy',
-    version='0.0.4',
+    version='0.0.6',
     author='zhanghaofei',
     author_email='1042697116@qq.com',
     url='https://github.com/zhanghaofei/weixinpy',
@@ -82,7 +82,7 @@ setup(
         'Topic :: Utilities',
     ],
     extras_require={
-        'cryptography': ['cryptography'],
-        'pycrypto': ['pycrypto'],
+        # 'cryptography': ['cryptography'],
+        # 'pycrypto': ['pycrypto'],
     }
 )
