@@ -678,3 +678,24 @@ class SubmitInvoiceTitleEvent(BaseEvent):
     bank_no = StringField('bank_no')  # 银行号码
     attach = StringField('attach')  # 附加字段
     title_type = StringField('title_type')  # 抬头类型，个人InvoiceUserTitlePersonType, 公司InvoiceUserTitleBusinessType
+
+
+@register_event('user_enter_tempsession')
+class UserEnterTempSessionEvent(BaseEvent):
+    """
+    小程序用户进入客服消息
+    详情请参阅
+    https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/customer-message/receive.html
+    """
+    event = 'user_enter_tempsession'
+    session_from = StringField('SessionFrom')
+
+
+@register_event('view_miniprogram')
+class ViewMiniProgramEvent(BaseEvent):
+    """
+    从菜单进入小程序事件
+    """
+    event = 'view_miniprogram'
+    page_path = StringField('EventKey')  # 小程序路径
+    menu_id = StringField('MenuId')  # 菜单ID
