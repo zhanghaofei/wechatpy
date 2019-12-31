@@ -1,11 +1,11 @@
-      ___       __   _______   ________  ___  ___  ________  _________  ________  ___    ___ 
+      ___       __   _______   ________  ___  ___  ________  _________  ________  ___    ___
      |\  \     |\  \|\  ___ \ |\   ____\|\  \|\  \|\   __  \|\___   ___\\   __  \|\  \  /  /|
      \ \  \    \ \  \ \   __/|\ \  \___|\ \  \\\  \ \  \|\  \|___ \  \_\ \  \|\  \ \  \/  / /
-      \ \  \  __\ \  \ \  \_|/_\ \  \    \ \   __  \ \   __  \   \ \  \ \ \   ____\ \    / / 
-       \ \  \|\__\_\  \ \  \_|\ \ \  \____\ \  \ \  \ \  \ \  \   \ \  \ \ \  \___|\/  /  /  
-        \ \____________\ \_______\ \_______\ \__\ \__\ \__\ \__\   \ \__\ \ \__\ __/  / /    
-         \|____________|\|_______|\|_______|\|__|\|__|\|__|\|__|    \|__|  \|__||\___/ /     
-                                                                                \|___|/      
+      \ \  \  __\ \  \ \  \_|/_\ \  \    \ \   __  \ \   __  \   \ \  \ \ \   ____\ \    / /
+       \ \  \|\__\_\  \ \  \_|\ \ \  \____\ \  \ \  \ \  \ \  \   \ \  \ \ \  \___|\/  /  /
+        \ \____________\ \_______\ \_______\ \__\ \__\ \__\ \__\   \ \__\ \ \__\ __/  / /
+         \|____________|\|_______|\|_______|\|__|\|__|\|__|\|__|    \|__|  \|__||\___/ /
+                                                                                \|___|/
 
 [![Build Status](https://travis-ci.org/jxtech/wechatpy.svg?branch=master)](https://travis-ci.org/jxtech/wechatpy)
 [![Build status](https://ci.appveyor.com/api/projects/status/sluy95tvbe090af1/branch/master?svg=true)](https://ci.appveyor.com/project/messense/wechatpy-den93/branch/master)
@@ -25,30 +25,18 @@
 ## 功能特性
 
 1. 普通公众平台被动响应和主动调用 API
-2. 企业号公众平台被动响应和主动调用 API
+2. 企业微信 API
 3. 微信支付 API
 
 ## 安装
-
-从 0.8.0 版本开始，wechatpy 消息加解密同时兼容 [cryptography](https://github.com/pyca/cryptography) 和 [PyCrypto](https://github.com/dlitz/pycrypto), 
-优先使用 cryptography 库。因而不再强制依赖 PyCrypto 库。可先自行安装 cryptography 或者 PyCrypto 库：
-
-```bash
-# 安装 cryptography
-pip install cryptography>=0.8.2
-# 或者安装 PyCrypto
-pip install pycrypto>=2.6.1
-```
-
-> Tips: Windows 用户请先安装 PyCrypto 的二进制包后再使用 pip 安装 wechatpy 。 PyCrypto Windows 的二进制包可以在[这里](http://www.voidspace.org.uk/python/modules.shtml#pycrypto)下载。
 
 推荐使用 pip 进行安装:
 
 ```bash
 pip install wechatpy
-# with cryptography
+# with cryptography (推荐）
 pip install wechatpy[cryptography]
-# with pycrypto
+# with pycryptodome
 pip install wechatpy[pycrypto]
 ```
 
