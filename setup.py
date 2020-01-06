@@ -43,15 +43,15 @@ with open('requirements.txt') as f:
 
 setup(
     name='weixinpy',
-    version='0.0.9',
+    version='0.0.11',
     author='zhanghaofei',
     author_email='1042697116@qq.com',
     url='https://github.com/zhanghaofei/weixinpy',
     packages=find_packages(),
     keywords='WeChat, wexin, SDK',
     description='weixinpy: WeChat SDK for Python',
-    long_description=long_description,
-    long_description_content_type='text/markdown',
+    # long_description=long_description,
+    # long_description_content_type='text/markdown',
     install_requires=requirements,
     include_package_data=True,
     tests_require=[
